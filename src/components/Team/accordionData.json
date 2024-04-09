@@ -1,0 +1,43 @@
+[
+  {
+    "title": "CEO",
+    "name": "John Doe",
+    "position": "Chief Executive Officer",
+    "isOpen": true,
+    "children": [
+      {
+        "title": "Director of Department 1",
+        "name": "Alice Smith",
+        "position": "Director",
+        "isOpen": false,
+        "workers": [
+          { "name": "John Doe", "position": "Manager" },
+          { "name": "Alice Smith", "position": "Coordinator" },
+          { "name": "Bob Johnson", "position": "Analyst" }
+        ]
+      },
+      {
+        "title": "Director of Department 2",
+        "name": "Emily Brown",
+        "position": "Director",
+        "isOpen": false,
+        "workers": [
+          { "name": "Emily Brown", "position": "Supervisor" },
+          { "name": "Michael Davis", "position": "Consultant" },
+          { "name": "Emma Wilson", "position": "Assistant" }
+        ]
+      },
+      {
+        "title": "Director of Department 3",
+        "name": "Oliver Taylor",
+        "position": "Director",
+        "isOpen": false,
+        "workers": [
+          { "name": "Oliver Taylor", "position": "Specialist" },
+          { "name": "Sophia Martinez", "position": "Coordinator" },
+          { "name": "William Garcia", "position": "Analyst" }
+        ]
+      }
+    ]
+  }
+]

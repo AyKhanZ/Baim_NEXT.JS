@@ -9,19 +9,19 @@ import WaveAnimation from "@/components/WaveAnimation/WaveAnimation";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import Carousel from '../components/Carousel/Carousel';
+import Carousel from "../components/Carousel/Carousel";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import Projects from "@/components/Plan/Plan";
 import News from "@/components/News/News";
 
 const HomePage = () => {
-  const images = ['/BA.png', '/BA2.png', '/BA.png', '/BA2.png',];
+  const images = ["/BA.png", "/BA2.png", "/BA.png", "/BA2.png"];
 
   return (
-    <> 
-      <NavBar />
+    <>
+      {/* <NavBar />
       <WaveAnimation />
-      <Carousel images={images} />
+      <Carousel images={images} /> */}
       <PositionRelative />
       {/* <div className="positionRelative">
         <NumbersIncrement />
@@ -31,4 +31,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
