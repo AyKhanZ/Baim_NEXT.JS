@@ -8,7 +8,7 @@ import Modules from "../Modules/Modules";
 import Footer from "../Footer/Footer";
 import ChoiceForm from "../ChoiceForm/ChoiceForm";
 import Team from "../Team/Team";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import UserManagement from "../UserManagment/UserManagment";
 
 const PositionRelative = () => {
   return (
@@ -21,7 +21,9 @@ const PositionRelative = () => {
       <News />
       <SmallCarousel />
       <Modules /> */}
-      {/* <ErrorPage></ErrorPage> */}
+      <Team />
+      {/* <UserManagement></UserManagement> */}
+      {/* <Footer /> */}
     </div>
   );
 };
