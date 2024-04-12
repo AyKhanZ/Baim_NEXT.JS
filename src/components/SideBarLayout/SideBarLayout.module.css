@@ -1,12 +1,6 @@
 .container {
-  width: 100%;
-  display: flex;
-  /* justify-content: center; */
-}
-/* .navBarContainer {
-  width: 5%;
-} */
-.content {
-  margin-left: 80px;
-  width: 100%;
+  /* background-color: #f8f9fd; */
+  background-color: #eaebef;
+  min-height: 100vh;
+  padding: 0 20px 0 100px;
 }

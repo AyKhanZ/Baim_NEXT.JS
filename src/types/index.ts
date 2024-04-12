@@ -1,7 +1,9 @@
 export type Product = {
-    id: number;
-    name: string;
-    desc: string;
-    img: string;
-    productType: string
-}
+  id: number;
+  id1C: string;
+  name: string;
+  desc: string;
+  combinedImage: string;
+  productType: string;
+  isPublic: boolean;
+};

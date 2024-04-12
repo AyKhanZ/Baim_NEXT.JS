@@ -9,10 +9,8 @@ interface Props {
 const SideBarLayout = ({ children }: any) => {
   return (
     <>
+      <SideNavBar />
       <div className={styles.container}>
-        <div className={styles.navBarContainer}>
-          <SideNavBar />
-        </div>
         <div className={styles.content}>{children}</div>
       </div>
     </>

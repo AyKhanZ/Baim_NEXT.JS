@@ -3,12 +3,8 @@
   justify-content: center;
   min-height: 100vh;
   min-width: 100%;
-  flex-direction: column;
 }
-.iconContainer {
-  display: flex;
-  align-items: center;
-}
+
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -16,30 +12,40 @@
 }
 
 .input {
-  border: 1px solid transparent;
-  border-radius: 15px;
-  background-color: white;
-  color: black;
-  padding: 10px;
-  margin: 10px 0;
-  accent-color: #3d8584;
-  width: 200px;
-}
-
-.form {
-  margin: 20px;
-  border: 1px solid #3d8584;
+  padding: 10px 20px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
-  background-color: #3d8584;
-  padding: 20px 20px;
+  color: grey;
+  justify-content: center;
+  font-size: 16px;
+  margin: 10px 0;
+}
+.inputDesc {
+  resize: none;
+  min-height: 200px;
+  padding: 10px 20px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  color: grey;
+  font-size: 16px;
+  margin: 10px 0;
+}
+.imageContainer {
+  width: 38%;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  min-height: 70vh;
 }
-
+.label {
+  margin: 20px 0 0 5px;
+  font-size: 18px;
+  font-weight: 800;
+}
 .heading {
   font-weight: 800;
-  margin: 30px 20px 30px 0;
+  margin: 30px 0;
 }
 .title {
   font-weight: 400;
@@ -57,21 +63,6 @@
   background-color: #ffffff;
   border-radius: 15px;
   width: 96%;
-  min-height: 54vh;
-}
-.containerHeader {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  width: 96%;
-}
-.filters {
-  margin: 5px 0;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  width: 96%;
 }
 .containerTitle {
   display: flex;
@@ -80,7 +71,6 @@
   width: "100%";
   padding: 0 0 0 20px;
 }
-
 .hr {
   border: 2px solid #3d8584;
   margin: 20px 30px;
@@ -98,8 +88,8 @@
 .imgContainer {
   border-radius: 15px;
   background-color: #eaebef;
+  width: 280px;
   height: 220px;
-  min-width: 280px;
 }
 .productTitle {
   display: flex;
@@ -147,4 +137,23 @@
 .editBtn {
   display: block;
   color: #3d8584;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 220px;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 60vh;
+}
+.inputs {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
 }
