@@ -39,7 +39,7 @@ const PostNews = () => {
         }
     };
 
-    const edit = async () => {
+    const edit = async (id: string) => {
         try {
             const updatedNews = {
                 title,
@@ -47,18 +47,18 @@ const PostNews = () => {
                 img,
             };
             const response = await fetch(
-                `http://localhost:3000/api/news/${router.query.editId}`,
+                `http://localhost:3000/api/news/${id}`,
                 {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(newNews),
+                    body: JSON.stringify(updatedNews),
                 }
             );
 
             if (!response.ok) {
-                throw new Error("Error updating news");
+                throw new Error("Error updating news!");
             }
 
             // Redirect to the manage news page after successful update
@@ -77,7 +77,9 @@ const PostNews = () => {
 
                         <div className={styles.btns}>
                             <CreateBtn
-                                onClick={edit}
+                                onClick={() =>
+                                    edit(router.query.editId.toString())
+                                }
                                 symbol={pencil}
                                 title="Edit"
                             />

@@ -46,7 +46,6 @@ const ManageNews = () => {
                 },
                 body: JSON.stringify({ id }),
             });
-            // Update the state after successful deletion
             setNews(news.filter((item) => item._id !== id));
         } catch (error: any) {
             console.error(error);
