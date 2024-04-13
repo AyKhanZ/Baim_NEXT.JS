@@ -10,6 +10,7 @@ import UploadImage from "@/components/UploadImage/UploadImage";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
+// page/manageNews/[editId]/index.tsx
 const PostNews = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -40,7 +41,7 @@ const PostNews = () => {
 
     const edit = async () => {
         try {
-            const newNews = {
+            const updatedNews = {
                 title,
                 description: desc,
                 img,
@@ -60,6 +61,7 @@ const PostNews = () => {
                 throw new Error("Error updating news");
             }
 
+            // Redirect to the manage news page after successful update
             router.push("/manageNews");
         } catch (error: any) {
             console.error(error);

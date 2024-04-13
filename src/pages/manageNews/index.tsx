@@ -47,7 +47,7 @@ const ManageNews = () => {
                 body: JSON.stringify({ id }),
             });
             // Update the state after successful deletion
-            setNews(news.filter((item) => item.id !== id));
+            setNews(news.filter((item) => item._id !== id));
         } catch (error: any) {
             console.error(error);
         }
@@ -56,6 +56,7 @@ const ManageNews = () => {
     const edit = async (id: string) => {
         try {
             const newNews: News = {
+                _id: id,
                 title,
                 description: desc,
                 img,
@@ -79,7 +80,7 @@ const ManageNews = () => {
 
             // Here you can update your local state or fetch the updated news
             // For example:
-            // setNews(updatedNews);
+            setNews(updatedNews);
         } catch (error: any) {
             console.error(error);
         }
@@ -143,7 +144,7 @@ const ManageNews = () => {
                 >
                     {news.length > 0 ? (
                         news.map((p: News) => (
-                            <div className={styles.horizontal} key={p.id}>
+                            <div className={styles.horizontal} key={p._id}>
                                 {p.imageFile == null ? (
                                     <div className={styles.imgContainer}></div>
                                 ) : (
@@ -166,14 +167,14 @@ const ManageNews = () => {
                                             <CreateBtn
                                                 onClick={() =>
                                                     router.push(
-                                                        `/manageNews/${p.id}`
+                                                        `/manageNews/${p._id}`
                                                     )
                                                 }
                                                 symbol={pencil}
                                                 title="Edit"
                                             />
                                             <CreateBtn
-                                                onClick={() => showDelete(p.id)}
+                                                onClick={() => showDelete(p._id)}
                                                 symbol={trashCan}
                                                 title="Delete"
                                             />

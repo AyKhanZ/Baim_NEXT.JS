@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "../../../../../lib/db";
 import NewsModel from "../../../../../lib/models/NewsModel";
 
+// page/api/news/[id]/index.ts
 const getById = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         await connectDB();
