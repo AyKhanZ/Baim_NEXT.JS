@@ -1,0 +1,31 @@
+.btn {
+  color: #007bff;
+  background-color: transparent;
+  border: 2px solid #007bff;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin: 0 10px 0 0;
+}
+.title {
+  font-weight: 600;
+}
+.icon {
+  margin: 0 6px;
+}
+.btn:hover {
+  color: white;
+  background-color: #007bff;
+}
+
+.btnActive {
+  color: white;
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin: 0 10px 0 0;
+}

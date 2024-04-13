@@ -1,0 +1,40 @@
+/* Table.module.css */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header, .cell {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center; /* Выравнивает текст в заголовках и ячейках по центру */
+}
+
+/* Убирает границу у ячеек первой строки заголовка */
+.firstRowHeader {
+    border-bottom: none;
+}
+
+.row:last-child .cell {
+    border-bottom: none;
+}
+
+.actionButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actionButton:hover {
+    background-color: #0056b3;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1px
+}
