@@ -44,7 +44,7 @@ const PostNews = () => {
             const updatedNews = {
                 title,
                 description: desc,
-                img,
+                img: img,
             };
             const response = await fetch(
                 `http://localhost:3000/api/news/${id}`,
@@ -60,8 +60,6 @@ const PostNews = () => {
             if (!response.ok) {
                 throw new Error("Error updating news!");
             }
-
-            // Redirect to the manage news page after successful update
             router.push("/manageNews");
         } catch (error: any) {
             console.error(error);
@@ -78,7 +76,7 @@ const PostNews = () => {
                         <div className={styles.btns}>
                             <CreateBtn
                                 onClick={() =>
-                                    edit(router.query.editId.toString())
+                                    edit(router.query.editId?.toString() ?? "")
                                 }
                                 symbol={pencil}
                                 title="Edit"
