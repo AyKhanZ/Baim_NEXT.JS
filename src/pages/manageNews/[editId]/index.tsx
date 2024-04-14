@@ -15,6 +15,8 @@ const PostNews = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [img, setImg] = useState("");
+    const [imageFile, setImageFile] = useState<File>();
+
     const router = useRouter();
 
     useEffect(() => {
@@ -40,30 +42,46 @@ const PostNews = () => {
     };
 
     const edit = async (id: string) => {
-        try {
-            const updatedNews = {
-                title,
-                description: desc,
-                img: img,
-            };
-            const response = await fetch(
-                `http://localhost:3000/api/news/${id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(updatedNews),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error("Error updating news!");
-            }
-            router.push("/manageNews");
-        } catch (error: any) {
-            console.error(error);
+        if (!imageFile) {
+            alert("Please select an image file");
+            return;
         }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(imageFile);
+        reader.onload = async () => {
+            const base64Image = reader.result as string;
+
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/api/news/${id}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            title,
+                            description: desc,
+                            img: base64Image,
+                        }),
+                    }
+                );
+
+                if (response.ok) {
+                    router.push("/manageNews");
+                } else {
+                    const text = await response.text();
+                    console.error(
+                        `Request failed with status code ${response.status} and body: ${text}`
+                    );
+                    throw new Error("Error updating news");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error updating news");
+            }
+        };
     };
 
     return (
@@ -109,7 +127,7 @@ const PostNews = () => {
                         </div>
                         <div className={styles.imageContainer}>
                             <label className={styles.label}>Image</label>
-                            <UploadImage setImg={setImg} img={img} />
+                            <UploadImage setImg={setImageFile} img={img} />
                         </div>
                     </div>
                 </div>

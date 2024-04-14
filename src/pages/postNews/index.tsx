@@ -12,7 +12,6 @@ const nunito = Nunito({ subsets: ["latin"] });
 const PostNews = () => {
     const [title, setTitle] = useState<string>("");
     const [desc, setDesc] = useState<string>("");
-    const [image, setImage] = useState<string>("");
     const [imageFile, setImageFile] = useState<File>();
     const router = useRouter();
 

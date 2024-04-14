@@ -25,12 +25,13 @@ const updateById = async (req: NextApiRequest, res: NextApiResponse) => {
         await connectDB();
 
         if (req.method === "PUT") {
-            const { title, description, img } = req.body;
+            const { title, description, img, imageFile } = req.body;
             const id = typeof req.query.id === "string" ? req.query.id : "";
             const news = await NewsModel.findByIdAndUpdate(id, {
                 title,
                 description,
                 img,
+                imageFile,
             });
             if (!news) {
                 return res.status(404).json({ error: "News not found" });
