@@ -19,9 +19,9 @@ const PostNews = () => {
         e.preventDefault();
 
         if (!imageFile) {
-          alert("Please select an image file");
-          return;
-      }
+            alert("Please select an image file");
+            return;
+        }
 
         const reader = new FileReader();
         reader.readAsDataURL(imageFile);
