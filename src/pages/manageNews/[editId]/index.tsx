@@ -11,7 +11,7 @@ import UploadImage from "@/components/UploadImage/UploadImage";
 const nunito = Nunito({ subsets: ["latin"] });
 
 // page/manageNews/[editId]/index.tsx
-const PostNews = () => {
+const EditNews = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [img, setImg] = useState("");
@@ -135,4 +135,4 @@ const PostNews = () => {
         </SideBarLayout>
     );
 };
-export default PostNews;
+export default EditNews;

@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import NewsModel from "../../../../lib/models/NewsModel";
 import connectDB from "../../../../lib/db";
 
-// page/api/news/index.ts
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<News[]>
