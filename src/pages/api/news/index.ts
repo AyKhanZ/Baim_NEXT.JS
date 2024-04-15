@@ -51,19 +51,4 @@ export default async function handler(
             return res.status(500).json({ error: "Error deleting news" });
         }
     }
-
-    // if (req.method === "PUT") {
-    //     const { id, title, description, img } = req.body;
-    //     try {
-    //         const news = await NewsModel.findByIdAndUpdate(id, {
-    //             title,
-    //             description,
-    //             img,
-    //         });
-    //         news.save();
-    //         return res.status(200).json(news);
-    //     } catch (error) {
-    //         return res.status(500).json({ error: "Error updating news" });
-    //     }
-    // }
 }

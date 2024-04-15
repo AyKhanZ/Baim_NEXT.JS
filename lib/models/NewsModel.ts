@@ -1,7 +1,6 @@
 import { News } from "@/types";
 import mongoose, { Schema } from "mongoose";
 
-// lib/models/NewsModel.ts
 const newsSchema = new Schema<News>({
     title: { type: String, required: true },
     description: { type: String },

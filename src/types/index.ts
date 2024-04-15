@@ -1,17 +1,26 @@
 export type Product = {
-  id: number;
-  id1C: string;
-  name: string;
-  description: string;
-  combinedImage: string;
-  productType: string;
-  isPublic: boolean;
+    id: number;
+    id1C: string;
+    name: string;
+    description: string;
+    combinedImage: string;
+    productType: string;
+    isPublic: boolean;
 };
 
 export type News = {
-  _id?: string;
-  title: string;
-  description: string;
-  img?: string;
-  imageFile?: File;
+    _id?: string;
+    title: string;
+    description: string;
+    img?: string;
+    imageFile?: File;
+};
+
+export type Partner = {
+    _id?: number;
+    id1C: string;
+    name: string;
+    description: string;
+    combinedImage?: string;
+    imageFile?: File;
 };
