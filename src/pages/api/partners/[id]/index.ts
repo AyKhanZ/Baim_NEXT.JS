@@ -27,13 +27,17 @@ const updateById = async (req: NextApiRequest, res: NextApiResponse) => {
             const { id1C, name, description, combinedImage, imageFile } =
                 req.body;
             const id = typeof req.query.id === "string" ? req.query.id : "";
-            const partner = await PartnerModel.findByIdAndUpdate(id, {
-                id1C,
-                name,
-                description,
-                combinedImage,
-                imageFile,
-            });
+            const partner = await PartnerModel.findByIdAndUpdate(
+                id,
+                {
+                    id1C,
+                    name,
+                    description,
+                    combinedImage,
+                    imageFile,
+                },
+                { new: true }
+            );
             if (!partner) {
                 return res.status(404).json({ error: "Partner not found" });
             }
