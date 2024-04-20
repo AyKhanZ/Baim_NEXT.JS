@@ -6,8 +6,6 @@ import { Nunito } from "next/font/google";
 import CreateBtn from "@/components/CreateBtn/CreateBtn";
 import { faLeftLong as back } from "@fortawesome/free-solid-svg-icons";
 import UploadImage from "@/components/UploadImage/UploadImage";
-import CheckBox from "@/components/CheckBox/CheckBox";
-import ComboBox from "@/components/ComboBox/ComboBox";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -26,6 +24,11 @@ const PostPartner = () => {
             return;
         }
 
+        if (!id1C) {
+            alert("Please provide an id1C");
+            return;
+        }
+
         const reader = new FileReader();
         reader.readAsDataURL(imageFile);
         reader.onload = async () => {
@@ -40,23 +43,23 @@ const PostPartner = () => {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            id1C,
+                            _id1C: id1C,
                             name,
                             description: desc,
-
-                            combinedImage: base64Image,
+                            img: base64Image,
+                            imageFile,
                         }),
                     }
                 );
 
                 if (response.ok) {
-                    router.push("/managePartners");
+                    await router.push("/managePartners");
                 } else {
                     const text = await response.text();
                     console.error(
                         `Request failed with status code ${response.status} and body: ${text}`
                     );
-                    throw new Error("Error creating partner");
+                    alert("Error creating partner" + text);
                 }
             } catch (error) {
                 console.error(error);
@@ -88,14 +91,14 @@ const PostPartner = () => {
                         <div className={styles.inputs}>
                             <label className={styles.label}>Id 1C</label>
                             <input
-                                onChange={(ev) => setId1C(ev.target.value)}
+                                onChange={(e) => setId1C(e.target.value)}
                                 placeholder="Id 1C"
                                 className={styles.input}
                                 type="text"
                             />
                             <label className={styles.label}>Name</label>
                             <input
-                                onChange={(ev) => setName(ev.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                                 placeholder="Name"
                                 className={styles.input}
                                 type="text"
@@ -103,7 +106,7 @@ const PostPartner = () => {
                             <label className={styles.label}>Description</label>
                             <textarea
                                 className={styles.inputDesc}
-                                onChange={(ev) => setDesc(ev.target.value)}
+                                onChange={(e) => setDesc(e.target.value)}
                                 placeholder="Description"
                             />
                         </div>

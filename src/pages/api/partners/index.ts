@@ -3,6 +3,8 @@ import PartnerModel from "../../../../lib/models/PartnersModel";
 import { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "../../../../lib/db";
 
+// Path: src/pages/api/partners/index.ts
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Partner[]>
@@ -13,24 +15,25 @@ export default async function handler(
         try {
             let partners = await PartnerModel.find();
             partners = partners.map((item) => {
-                const imageBuffer = item.combinedImage;
+                const imageBuffer = item.img;
                 const imageBase64 = imageBuffer.toString("base64");
                 item.combinedImage = `data:image/jpeg;base64${imageBase64}`;
                 return item;
             });
             return res.status(200).json(partners);
         } catch (error: any) {
+            console.error(error);
             return res.status(500).json({ error: "Error fetching partners" });
         }
     }
 
     if (req.method === "POST") {
-        const { id1C, name, description, combinedImage, imageFile } = req.body;
+        const { _id1C, name, description, img, imageFile } = req.body;
         const partner = new PartnerModel({
-            id1C,
+            _id1C,
             name,
             description,
-            combinedImage,
+            img,
             imageFile,
         });
         try {
@@ -48,6 +51,7 @@ export default async function handler(
             const partner = await PartnerModel.findByIdAndDelete(id);
             return res.status(200).json(partner);
         } catch (error) {
+            console.log(error);
             return res.status(500).json({ error: "Error deleting partner" });
         }
     }

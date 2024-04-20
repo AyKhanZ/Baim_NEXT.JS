@@ -1,7 +1,6 @@
 import SideBarLayout from "@/components/SideBarLayout/SideBarLayout";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
 import { Nunito } from "next/font/google";
 import styles from "./EditId.module.css";
 import CreateBtn from "@/components/CreateBtn/CreateBtn";
@@ -17,30 +16,32 @@ const EditPartner = () => {
     const [desc, setDesc] = useState("");
     const [img, setImg] = useState("");
     const [imageFile, setImageFile] = useState<File>();
+
     const router = useRouter();
-    const params = useParams();
-
-    const getPartner = async (id: number) => {
-        try {
-            const response = await fetch(
-                `http://localhost:3000/api/partners/ById/${id}`
-            );
-            const data = await response.json();
-
-            setImg(data.image);
-            setId1C(data.id1C);
-            setName(data.name);
-            setDesc(data.description);
-        } catch (error: any) {
-            console.error(error);
-        }
-    };
 
     useEffect(() => {
-        getPartner(Number(params.editId));
-    }, [params]);
+        const { editId } = router.query;
+        const getPartners = async (id: string) => {
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/api/partners/${id}`
+                );
+                const data = await response.json();
 
-    const edit = async (id: number) => {
+                setImg(data.img);
+                setId1C(data._id1C);
+                setName(data.name);
+                setDesc(data.description);
+            } catch (error: any) {
+                console.error(error);
+            }
+        };
+        if (editId) {
+            getPartners(editId.toString());
+        }
+    }, [router.query]);
+
+    const edit = async (id: string) => {
         if (!imageFile) {
             alert("Please select an image file");
             return;
@@ -60,10 +61,10 @@ const EditPartner = () => {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            id1C: id1C,
-                            name: name,
+                            name,
+                            _id1C: id1C,
                             description: desc,
-                            image: base64Image,
+                            img: base64Image,
                         }),
                     }
                 );
@@ -75,11 +76,11 @@ const EditPartner = () => {
                     console.error(
                         `Request failed with status code ${response.status} and body: ${text}`
                     );
-                    throw new Error("Error creating partner");
+                    throw new Error("Error updating partner");
                 }
             } catch (error) {
                 console.error(error);
-                alert("Error creating partner");
+                alert("Error updating partner");
             }
         };
     };
@@ -94,12 +95,7 @@ const EditPartner = () => {
                         <div className={styles.btns}>
                             <CreateBtn
                                 onClick={() =>
-                                    edit(
-                                        Number(
-                                            router.query.editId?.toString() ??
-                                                ""
-                                        )
-                                    )
+                                    edit(router.query.editId?.toString() ?? "")
                                 }
                                 symbol={pencil}
                                 title="Edit"

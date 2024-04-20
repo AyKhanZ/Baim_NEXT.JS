@@ -21,25 +21,24 @@ const EditNews = () => {
 
     useEffect(() => {
         const { editId } = router.query;
+        const getNews = async (id: string) => {
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/api/news/${id}`
+                );
+                const data = await response.json();
+
+                setImg(data.img);
+                setTitle(data.title);
+                setDesc(data.description);
+            } catch (error: any) {
+                console.error(error);
+            }
+        };
         if (editId) {
             getNews(editId.toString());
         }
     }, [router.query]);
-
-    const getNews = async (id: string) => {
-        try {
-            const response = await fetch(
-                `http://localhost:3000/api/news/${id}`
-            );
-            const data = await response.json();
-
-            setImg(data.img);
-            setTitle(data.title);
-            setDesc(data.description);
-        } catch (error: any) {
-            console.error(error);
-        }
-    };
 
     const edit = async (id: string) => {
         if (!imageFile) {
@@ -69,7 +68,7 @@ const EditNews = () => {
                 );
 
                 if (response.ok) {
-                    router.push("/manageNews");
+                    await router.push("/manageNews");
                 } else {
                     const text = await response.text();
                     console.error(

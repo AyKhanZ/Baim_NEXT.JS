@@ -43,7 +43,7 @@ const PostNews = () => {
                 });
 
                 if (response.ok) {
-                    router.push("/manageNews");
+                    await router.push("/manageNews");
                 } else {
                     const text = await response.text();
                     console.error(

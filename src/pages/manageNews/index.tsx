@@ -1,5 +1,4 @@
 import { News } from "@/types";
-import NewsModel from "../../../lib/models/NewsModel";
 import { useEffect, useState } from "react";
 import styles from "./ManageNews.module.css";
 import SideBarLayout from "@/components/SideBarLayout/SideBarLayout";
@@ -175,4 +174,5 @@ const ManageNews = () => {
         </SideBarLayout>
     );
 };
+
 export default ManageNews;

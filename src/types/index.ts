@@ -17,10 +17,10 @@ export type News = {
 };
 
 export type Partner = {
-    _id?: number;
-    id1C: string;
+    _id?: string;
+    _id1C: string;
     name: string;
     description: string;
-    combinedImage?: string;
+    img?: string;
     imageFile?: File;
 };

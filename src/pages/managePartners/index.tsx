@@ -14,7 +14,7 @@ const nunito = Nunito({ subsets: ["latin"] });
 
 const ManagePartners = () => {
     const [partners, setPartners] = useState<Partner[]>([]);
-    const [delPartnerId, setDelPartnerId] = useState(0);
+    const [delPartnerId, setDelPartnerId] = useState<string>("");
     const [deleteShown, setDeleteShown] = useState(false);
 
     const router = useRouter();
@@ -34,9 +34,9 @@ const ManagePartners = () => {
         fetchPartners();
     }, []);
 
-    const deletePartner = async (id: number) => {
+    const deletePartner = async (id: string) => {
         try {
-            await fetch(`https://localhost:3000/api/partners/${id}`, {
+            await fetch(`http://localhost:3000/api/partners/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -109,13 +109,21 @@ const ManagePartners = () => {
                     {partners.length > 0 ? (
                         partners.map((p: Partner) => (
                             <div className={styles.horizontal} key={p._id}>
-                                {p.combinedImage == null ? (
-                                    <div className={styles.imgContainer}></div>
+                                {p.imageFile == null ? (
+                                    <div className={styles.imgContainer}>
+                                        <Image
+                                            className={styles.imgContainer}
+                                            src={p.img as string}
+                                            alt="Partner image"
+                                            width={280}
+                                            height={220}
+                                        />
+                                    </div>
                                 ) : (
                                     <Image
                                         className={styles.imgContainer}
-                                        src={p.combinedImage as string}
-                                        alt="Partner image"
+                                        src={p.img as string}
+                                        alt="News image"
                                         width={280}
                                         height={220}
                                     />
@@ -148,7 +156,7 @@ const ManagePartners = () => {
                                     </div>
 
                                     <h2 className={styles.id}>
-                                        Id 1C: {p.id1C}
+                                        Id 1C: {p._id1C}
                                     </h2>
                                     <p className={styles.desc}>
                                         {truncateText(p.description, 550)}
@@ -168,4 +176,5 @@ const ManagePartners = () => {
         </SideBarLayout>
     );
 };
+
 export default ManagePartners;
