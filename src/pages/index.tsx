@@ -17,6 +17,7 @@ import SideBarLayout from "@/components/SideBarLayout/SideBarLayout";
 import UserManagement from "@/components/UserManagment/UserManagment";
 import PositionRelativeLayout from "@/components/PositionRelativeLayout/PositionRelativeLayout";
 import Team from "@/components/Team/Team";
+import Questionnaire from "@/components/Questionnaire/Questionnaire";
 
 const HomePage = () => {
   const images = ["/BA.png", "/BA2.png", "/BA.png", "/BA2.png"];
@@ -30,12 +31,13 @@ const HomePage = () => {
       {/* <PositionRelativeLayout>
         <Team />
       </PositionRelativeLayout> */}
-      <SideBarLayout>
-        <UserManagement />
-      </SideBarLayout>
+      {/*<SideBarLayout>*/}
+      {/*  <UserManagement />*/}
+      {/*</SideBarLayout>*/}
       {/* <div className="positionRelative">
         <NumbersIncrement />
       </div> */}
+        <Questionnaire/>
     </>
   );
 };

@@ -1,7 +1,7 @@
 .btn {
-  color: #3d8584;
+  color: #007bff;
   background-color: transparent;
-  border: 2px solid #3d8584;
+  border: 2px solid #007bff;
   border-radius: 15px;
   padding: 10px;
   display: flex;
@@ -16,13 +16,13 @@
 }
 .btn:hover {
   color: white;
-  background-color: #3d8584;
+  background-color: #007bff;
 }
 
 .btnActive {
   color: white;
-  background-color: #3d8584;
-  border: 2px solid #3d8584;
+  background-color: #007bff;
+  border: 2px solid #007bff;
   border-radius: 15px;
   padding: 10px;
   display: flex;

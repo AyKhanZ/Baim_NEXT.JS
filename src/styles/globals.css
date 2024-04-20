@@ -250,7 +250,7 @@ body {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #3d8584;
+  background-color: #007bff;
 }
 
 /* range */
@@ -277,9 +277,9 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #3d8584;
+  background: #007bff;
   cursor: pointer;
-  box-shadow: -407px 0 0 400px #3d8584;
+  box-shadow: -407px 0 0 400px #007bff;
 }
 
 /* radio */
@@ -326,12 +326,12 @@ body:not(:-moz-handler-blocked) fieldset {
   border-left: none;
 }
 .toggle input:hover + label {
-  border-color: #3d8584;
+  border-color: #007bff;
 }
 .toggle input:checked + label {
-  background-color: #3d8584;
+  background-color: #007bff;
   color: #fff;
-  border-color: #3d8584;
+  border-color: #007bff;
   z-index: 0.9;
 }
 
@@ -497,8 +497,8 @@ span.white {
 
 #drop {
   padding: 8px 16px;
-  border: 1px solid #3d8584;
-  color: #3d8584;
+  border: 1px solid #007bff;
+  color: #007bff;
   border-radius: 20px;
   background-image: linear-gradient(
     to right,

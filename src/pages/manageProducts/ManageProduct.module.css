@@ -22,15 +22,15 @@
   color: black;
   padding: 10px;
   margin: 10px 0;
-  accent-color: #3d8584;
+  accent-color: #007bff;
   width: 200px;
 }
 
 .form {
   margin: 20px;
-  border: 1px solid #3d8584;
+  border: 1px solid #007bff;
   border-radius: 10px;
-  background-color: #3d8584;
+  background-color: #007bff;
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@
 }
 
 .hr {
-  border: 2px solid #3d8584;
+  border: 2px solid #007bff;
   margin: 20px 30px;
 }
 
@@ -146,5 +146,5 @@
 
 .editBtn {
   display: block;
-  color: #3d8584;
+  color: #007bff;
 }

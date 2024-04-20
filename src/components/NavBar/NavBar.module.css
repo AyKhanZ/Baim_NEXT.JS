@@ -24,7 +24,7 @@
 
 .banner {
   position: absolute;
-  background-color: #3d8584;
+  background-color: #007bff;
   width: calc(100vw - 40px);
   margin: 15px;
   height: 259.75px;
@@ -111,8 +111,8 @@
 
 .whiteAndCyan {
   padding: 8px 16px;
-  border: 1px solid #3d8584;
-  color: #3d8584;
+  border: 1px solid #007bff;
+  color: #007bff;
   font-size: 1rem;
   border-radius: 20px;
   background-image: linear-gradient(
@@ -129,8 +129,8 @@
 
 .whiteBtn {
   padding: 8px 16px;
-  border: 1px solid #3d8584;
-  color: #3d8584;
+  border: 1px solid #007bff;
+  color: #007bff;
   border-radius: 20px;
   background-image: white;
   z-index: 0.9;

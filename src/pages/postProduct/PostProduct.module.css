@@ -72,7 +72,7 @@
   padding: 0 0 0 20px;
 }
 .hr {
-  border: 2px solid #3d8584;
+  border: 2px solid #007bff;
   margin: 20px 30px;
 }
 
@@ -136,7 +136,7 @@
 
 .editBtn {
   display: block;
-  color: #3d8584;
+  color: #007bff;
 }
 
 .btns {

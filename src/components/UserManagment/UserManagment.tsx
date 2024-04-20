@@ -4,36 +4,23 @@ import Users from "@/icons/Users";
 import Bell from "@/icons/Bell";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
+import CreateBtn from "@/components/CreateBtn/CreateBtn";
+import Table from "@/components/Table/Table";
+import Pagination from "@/components/Pagination/Pagination";
 
 // Интерфейс для данных пользователя
-interface User {
-  id: number;
-  name: string;
-  email: string;
+export interface User {
+  id1C: string; // Идентификатор пользователя в формате 1C
+  name: string; // Имя пользователя
+  surname: string; // Фамилия пользователя
+  email: string; // Электронная почта пользователя
+  role: string; // Роль пользователя
+  action?: string; // Действие, доступное для пользователя (необязательное поле)
 }
 
 const UserManagement: React.FC = () => {
   // Состояние для хранения списка пользователей
-  const [users, setUsers] = useState<User[]>([]);
 
-  // Функция для добавления нового пользователя
-  const addUser = (userData: User) => {
-    setUsers([...users, userData]);
-  };
-
-  // Функция для удаления пользователя
-  const deleteUser = (userId: number) => {
-    setUsers(users.filter((user) => user.id !== userId));
-  };
-
-  // Функция для обновления информации о пользователе
-  const updateUser = (userId: number, updatedUserData: Partial<User>) => {
-    setUsers(
-      users.map((user) =>
-        user.id === userId ? { ...user, ...updatedUserData } : user
-      )
-    );
-  };
   const [searchTerm, setSearchTerm] = useState("");
 
   // Function to handle changes in the search input
@@ -58,6 +45,42 @@ const UserManagement: React.FC = () => {
   }) => {
     setSelectedOption(event.target.value);
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  interface User {
+    id1C: string;
+    name: string;
+    surname: string;
+    email: string;
+    role: string;
+    action?: string; // Сделаем поле action необязательным
+  }
+
+  // Допустим, у вас есть массив пользователей, который вы хотите отобразить
+  const users:User[] = [    { id1C: '1C-001', name: 'Иван', surname: 'Иванов', email: 'ivanov@example.com', role: 'Администратор', action: 'Редактировать' },
+    { id1C: '1C-002', name: 'Петр', surname: 'Петров', email: 'petrov@example.com', role: 'Пользователь', action: 'Редактировать' },
+    { id1C: '1C-003', name: 'Сидор', surname: 'Сидоров', email: 'sidorov@example.com', role: 'Гость', action: 'Редактировать' },
+    // Добавляем больше данных для демонстрации пагинации
+    { id1C: '1C-004', name: 'Алексей', surname: 'Алексеев', email: 'alekseev@example.com', role: 'Пользователь', action: 'Редактировать' },
+    { id1C: '1C-005', name: 'Николай', surname: 'Николаев', email: 'nikolaev@example.com', role: 'Гость', action: 'Редактировать' },
+    { id1C: '1C-006', name: 'Мария', surname: 'Мариева', email: 'marieva@example.com', role: 'Администратор', action: 'Редактировать' },
+    { id1C: '1C-007', name: 'Ольга', surname: 'Ольгина', email: 'olgina@example.com', role: 'Пользователь', action: 'Редактировать' },
+    { id1C: '1C-008', name: 'Татьяна', surname: 'Татьянова', email: 'tatyanova@example.com', role: 'Гость', action: 'Редактировать' },
+    { id1C: '1C-009', name: 'Сергей', surname: 'Сергеев', email: 'sergeev@example.com', role: 'Пользователь'},
+    { id1C: '1C-010', name: 'Виктор', surname: 'Викторов', email: 'viktorov@example.com', role: 'Администратор'},
+    { id1C: '1C-011', name: 'Дмитрий', surname: 'Дмитриев', email: 'dmitriev@example.com', role: 'Пользователь' },
+    { id1C: '1C-012', name: 'Елена', surname: 'Еленова', email: 'elenova@example.com', role: 'Гость' },
+  ];
+
+  // Вычисляем индексы для текущей страницы
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  // Получаем пользователей для текущей страницы
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  // Функция для изменения страницы
+  const paginate = (pageNumber:number) => setCurrentPage(pageNumber);
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.firstSection}>
@@ -93,8 +116,9 @@ const UserManagement: React.FC = () => {
       </div>
       <div className={styles.secondSection}>
         <div className={styles.firstLevel}>
+          <div className={styles.leftPart}>
           <div className={styles.searchPart}>
-            <h4 className={styles.name}>Quick search a user</h4>
+            <h4 className={styles.subText}>Quick search a user</h4>
             <div className={styles.searchContainer}>
               <input
                 type="text"
@@ -103,133 +127,45 @@ const UserManagement: React.FC = () => {
                 onChange={handleInputChange}
                 className={styles.input}
               />
-              <FaSearch width={1} color="grey" className="search-icon" />
+              <FaSearch  width={1} color="grey" className={styles.searchIcon} />
             </div>
           </div>
           <div className={styles.searchPart}>
-            <h4 className={styles.name}>Filter users</h4>
-            <div className="filterable-select-container">
-              <select
-                value={selectedOption}
-                onChange={handleSelectChange}
-                className={styles.searchContainer}
-              >
-                <option value="">All users</option>
-                {options.map((option) => (
-                  <option key={option.value} value={option.value}>
+                      <h4 className={styles.subText}>Filter users</h4>
+
+                      <div >
+                        <select
+                            value={selectedOption}
+                            onChange={handleSelectChange}
+                            className={styles.filterBtn }
+                        >
+                          <option className={styles.subText} value="">All users</option>
+                          {options.map((option) => (
+                              <option className={styles.subText} key={option.value} value={option.value}>
                     {option.label}
                   </option>
                 ))}
               </select>
             </div>
+          </div></div>
+          <div>
+            <CreateBtn title={"Create"} symbol={"+"} onClick={()=>{}}/>
+          </div>
+        </div>
+        <div className={styles.secondLevel}>
+          <div className={styles.listContainer}>
+            <h3 className={styles.titleText}>All Users</h3>
+            <div className={styles.table}>
+              <Table users={currentUsers} /> {/* Передаем currentUsers в Table */}
+              <Pagination currentPage={currentPage} totalPages={Math.ceil(users.length / usersPerPage)} paginate={paginate} />
+            </div>
           </div>
         </div>
       </div>
-      {/* <h2>User Management</h2> */}
-      {/* Форма для добавления нового пользователя */}
-      {/* <UserForm addUser={addUser} /> */}
-      {/* Список пользователей */}
-      {/* <UserList users={users} deleteUser={deleteUser} updateUser={updateUser} /> */}
+
     </div>
   );
 };
 
-// // Компонент для формы добавления пользователя
-// const UserForm: React.FC<{ addUser: (userData: User) => void }> = ({
-//   addUser,
-// }) => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     // Генерация уникального ID для нового пользователя
-//     const userId = Math.floor(Math.random() * 1000);
-//     // Создание объекта с данными нового пользователя
-//     const userData: User = { id: userId, name, email };
-//     // Добавление нового пользователя в список
-//     addUser(userData);
-//     // Сброс формы
-//     setName("");
-//     setEmail("");
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//         placeholder="Name"
-//         required
-//       />
-//       <input
-//         type="email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//         placeholder="Email"
-//         required
-//       />
-//       <button type="submit">Add User</button>
-//     </form>
-//   );
-// };
-
-// // Компонент для отображения списка пользователей
-// const UserList: React.FC<{
-//   users: User[];
-//   deleteUser: (userId: number) => void;
-//   updateUser: (userId: number, updatedUserData: Partial<User>) => void;
-// }> = ({ users, deleteUser, updateUser }) => {
-//   return (
-//     <ul>
-//       {users.map((user) => (
-//         <li key={user.id}>
-//           <div>Name: {user.name}</div>
-//           <div>Email: {user.email}</div>
-//           <button onClick={() => deleteUser(user.id)}>Delete</button>
-//           {/* Форма для изменения информации о пользователе */}
-//           <UserUpdateForm updateUser={updateUser} userId={user.id} />
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
-// // Компонент для формы изменения информации о пользователе
-// const UserUpdateForm: React.FC<{
-//   updateUser: (userId: number, updatedUserData: Partial<User>) => void;
-//   userId: number;
-// }> = ({ updateUser, userId }) => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     // Обновление информации о пользователе
-//     updateUser(userId, { name, email });
-//     // Сброс формы
-//     setName("");
-//     setEmail("");
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//         placeholder="New Name"
-//       />
-//       <input
-//         type="email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//         placeholder="New Email"
-//       />
-//       <button type="submit">Update</button>
-//     </form>
-//   );
-// };
 
 export default UserManagement;

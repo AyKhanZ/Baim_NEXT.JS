@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #3d8584;
+    color: #007bff;
 }
 
 .numbers {
@@ -22,7 +22,6 @@
     border: 8px solid transparent;
     border-radius: 50%;
     background: 
-    linear-gradient(white 0 0) padding-box, /*this is your grey background*/
-    linear-gradient(to right, #3d8584, #17f0ec) border-box;
+    linear-gradient(white 0 0) padding-box, /*this is your grey background*/ #007bff border-box;
     font-size: 20px;
 }

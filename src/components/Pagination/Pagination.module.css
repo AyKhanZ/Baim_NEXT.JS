@@ -1,0 +1,47 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination li {
+    list-style-type: none;
+    margin: 0 10px;
+}
+
+.pagination button {
+    background-color: transparent; /* Прозрачный фон */
+    color: #007bff; /* Цвет текста */
+    border: 2px solid #007bff; /* Граница */
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #007bff; /* Цвет фона при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+.pagination button:disabled {
+    border-color: #cccccc; /* Цвет границы для неактивных кнопок */
+    color: #cccccc; /* Цвет текста для неактивных кнопок */
+    cursor: not-allowed;
+}
+
+.pagination .activeButton {
+    background-color: #007bff; /* Фон для активной кнопки */
+    color: white; /* Цвет текста для активной кнопки */
+    border-color: #007bff; /* Цвет границы для активной кнопки */
+    font-weight: bold;
+}
+.btns {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -64,8 +64,7 @@ const ManageProducts = () => {
         <div
           className={
             deleteShown ? styles.containerHidden : styles.containerHeader
-          }
-        >
+          }>
           <div className={styles.containerTitle}>
             <div className={styles.iconContainer}>
               <h1 className={styles.heading}>All products</h1>

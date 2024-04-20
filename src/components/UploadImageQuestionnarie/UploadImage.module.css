@@ -1,9 +1,9 @@
 .custumFileUpload {
-  height: 300px;
+  height: 40px;
+  width: 200px;
   display: flex;
   flex-direction: column;
-  align-items: space-between;
-  gap: 20px;
+  gap: 10px;
   cursor: pointer;
   justify-content: center;
   border: 2px dashed #cacaca;
@@ -21,7 +21,7 @@
 }
 
 .custumFileUpload .icon svg {
-  height: 80px;
+  height: 30px;
   fill: rgba(75, 85, 99, 1);
 }
 
@@ -32,8 +32,10 @@
 }
 
 .custumFileUpload .text span {
+  font-size: 14px;
   font-weight: 400;
   color: rgba(75, 85, 99, 1);
+  text-align: center;
 }
 
 .custumFileUpload input {
