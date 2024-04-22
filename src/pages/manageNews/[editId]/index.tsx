@@ -10,6 +10,7 @@ import UploadImage from "@/components/UploadImage/UploadImage";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
+// For Ayxan
 // page/manageNews/[editId]/index.tsx
 const EditNews = () => {
     const [title, setTitle] = useState("");
