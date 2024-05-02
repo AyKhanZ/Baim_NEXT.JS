@@ -40,7 +40,7 @@ const HomePage = () => {
         <NumbersIncrement />
       </div> */}
         {/*<MultiStepForm/>*/}
-      <EmployeeDetails/>
+      {/*<EmployeeDetails/>*/}
     </>
   );
 };

@@ -16,6 +16,9 @@ const Step3Form: React.FC<Step3FormProps> = ({
                                              }) => {
     return (
         <div className={styles.inputsContainer}>
+            <div className={styles.scrollable}>
+
+
             {state.inputs.map((input, index) => (
                 <div className={styles.inputsInnerContainer} key={input.id}>
                     <div className={styles.inputsStep3}>
@@ -86,6 +89,7 @@ const Step3Form: React.FC<Step3FormProps> = ({
 
                 </div>
             ))}
+            </div>
             <div>
                 <div className={`${styles.formSubmit} ${styles.grid2}`}>
                     <button onClick={() => handleAddClick(dispatch)} className={styles.formBtn}>

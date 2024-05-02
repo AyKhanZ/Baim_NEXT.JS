@@ -1,8 +1,8 @@
-import {FormErrorsStep1, FormErrorsStep2,FormInputErrorStep3} from "@/types/index";
-
+import {CompanyForm, FormErrorsStep1, FormErrorsStep2, FormInputErrorStep3} from "@/types/index";
 export interface QuestionnaireState {
     birthDate: string;
     patronymic: string;
+    position: string;
     password: string;
     confirmPassword: string;
     personalEmail: string;
@@ -23,12 +23,16 @@ export interface QuestionnaireState {
     voenIsValid: boolean;
     inputs: { id: number; name: string; lastName: string; email: string }[];
     stepOrder: string[];
-
+    currentStep: number;
+    checkedMale: boolean;
+    checkedFemale: boolean;
+    companyForms: CompanyForm[];
 }
 
 export type QuestionnaireAction =
     | { type: 'SET_FIELD'; field: string; value: any }
     | { type: 'ADD_INPUT' }
+    | { type: 'ADD_INPUT2' }
     | { type: 'REMOVE_INPUT'; index: number }
     | { type: 'SET_ACTIVE_TAB'; tabId: string }
     | { type: 'SET_VOEN'; voen: string }
@@ -38,7 +42,7 @@ export type QuestionnaireAction =
     | { type: 'GO_TO_PREVIOUS_STEP' }
     | { type: 'SET_ERRORS'; errors: FormErrorsStep1 }
     | { type: 'SET_ERRORS_STEP_2'; errorsStep2: FormErrorsStep2 }
-    | { type: 'SET_ERRORS_STEP_3'; index: number;newErrors: FormInputErrorStep3; }
+    | { type: 'SET_ERRORS_STEP_3'; index: number; newErrors: FormInputErrorStep3; }
     | { type: 'SET_SELECTED_OPTION'; option: string }
     | { type: 'SET_PHONE_NUMBER'; phoneNumber: string }
     | { type: 'SET_BUSINESS_PHONE_NUMBER'; businessPhoneNumber: string }
@@ -50,6 +54,11 @@ export type QuestionnaireAction =
     | { type: 'SET_BIRTH_DATE'; birthDate: string }
     | { type: 'SET_CONFIRM_PASSWORD'; confirmPassword: string }
     | { type: 'SET_PATRONYMIC'; patronymic: string }
+    | { type: 'SET_POSITION'; position: string }
     | { type: 'SET_PERSONAL_EMAIL'; personalEmail: string }
-    | { type: 'SET_PASSWORD'; password: string };
+    | { type: 'SET_PASSWORD'; password: string }
+    | { type: 'SET_CURRENT_STEP' }
+    | { type: 'SET_IS_FEMALE'; checkedFemale: boolean }
+    | { type: 'SET_IS_MALE'; checkedMale: boolean }
+    | { type: 'SET_COMPANY_FORM_DATA'; formData: CompanyForm[] };
 

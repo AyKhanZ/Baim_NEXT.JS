@@ -2,28 +2,31 @@ import {QuestionnaireAction, QuestionnaireState} from "@/types/questionnaireType
 import {FormErrorsStep1, FormErrorsStep2, FormInputErrorStep3} from "@/types";
 import React from "react";
 export const validateAllFields = (state: QuestionnaireState, setErrorsStep3: React.Dispatch<React.SetStateAction<FormInputErrorStep3[]>>): boolean => {
+
     const allNewErrors: FormInputErrorStep3[] = state.inputs.map(input => {
         const errors: FormInputErrorStep3 = {};
-        if (!input.name.trim()) {
-            errors.name = 'Name is required.';
-        }
-        if (!input.lastName.trim()) {
-            errors.lastName = 'Last name is required.';
-        }
-        if (!input.email.trim()) {
-            errors.email = 'Email is required.';
-        } else {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(input.email)) {
-                errors.email = 'Invalid email format.';
+        if(input.name.trim() || input.lastName.trim() || input.email.trim()){
+            if (!input.name.trim()) {
+                errors.name = 'Name is required.';
+            }
+            if (!input.lastName.trim()) {
+                errors.lastName = 'Last name is required.';
+            }
+            if (!input.email.trim()) {
+                errors.email = 'Email is required.';
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(input.email)) {
+                    errors.email = 'Invalid email format.';
+                }
             }
         }
+
 
         return errors;
     });
 
     setErrorsStep3(allNewErrors);
-    console.log(allNewErrors);
 
     const hasErrors = allNewErrors.some(errorObject => {
         return Object.values(errorObject).some(value => value !== undefined && value !== '');
@@ -91,6 +94,9 @@ export const validateFormStep1 = (state: QuestionnaireState, dispatch: React.Dis
     if (!state.patronymic) {
         newErrors.patronymic = "This field is required";
     }
+    if (!state.position) {
+        newErrors.position = "This field is required";
+    }
     if(state.personalEmail){
         if (!validateEmail(state.personalEmail)) {
             newErrors.personalEmail = "Please enter a valid email";
@@ -134,6 +140,7 @@ export const validateFormStep2=(state: QuestionnaireState, dispatch: React.Dispa
     if(state.voen.length===0){
         newErrors.voen = "VOEN is required";
     }
+
     else if(!state.voenIsValid || state.voen.length !==10){
         newErrors.voen = "VOEN is invalid"
     }

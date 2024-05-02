@@ -29,6 +29,7 @@ const MultiStepForm: React.FC = () => {
     const [errorsStep3, setErrorsStep3] = useState<FormInputErrorStep3[]>([
         {},
     ]);
+
     const hasErrors = selectHasErrors(state);
     const hasErrorsStep2 = selectHasErrorsStep2(state);
     useEffect(() => {
@@ -43,8 +44,10 @@ const MultiStepForm: React.FC = () => {
             validateAllFields(state,setErrorsStep3)
 
         }
+        updateDOM();
 
-    },  [
+
+    },  [state.currentStep,
         state.isSubmitted,
         state.clickedCountStep1,
         state.clickedCountStep2,
@@ -57,74 +60,107 @@ const MultiStepForm: React.FC = () => {
         state.phoneNumber,
         state.businessPhoneNumber,
         state.selectedOption,
-        state.voen,state.inputs,dispatch
+        state.position,
+        state.voen,state.inputs,dispatch,state.stepOrder
     ]);
 
+
+    const updateDOM = () => {
+        const circles = document.querySelectorAll(`.${styles.circle}`);
+        const progressBar = document.querySelector(`.${styles.indicator}`) as HTMLElement | null;
+        const buttons = document.querySelectorAll('button');
+
+        circles.forEach((circle, index) => {
+            if (state.currentStep - 1 >= index) {
+                circle.classList.add(styles.active);
+            } else {
+                circle.classList.remove(styles.active);
+            }        });
+
+        if (progressBar) {
+            progressBar.style.width = `${((state.currentStep - 1) / (circles.length - 1)) * 100}%`;
+        }
+    };
     return (
-        <div className={styles.container}>
+        <div className={styles.containerr}>
+
             <form action="#" method="POST" className={styles.form}>
-                <div className={styles.steps}>
-                    <ul className={styles.stepTabItems}>
-                        <li className={`${styles.stepItem} ${state.activeTab === 'step-01' ? styles.active : ''}`}
-                           >1
-                        </li>
-                        <li className={`${styles.stepItem} ${state.activeTab === 'step-02' ? styles.active : ''}`}
-                        >2
-                        </li>
-                        <li className={`${styles.stepItem} ${state.activeTab === 'step-03' ? styles.active : ''}`}
-                        >3
-                        </li>
-                    </ul>
+
+                    <div className={styles.stepsContainer}>
+
+                        <div className={styles.stepItems}>
+                        <span className={`${styles.circle} ${state.activeTab === 'step-02' ? styles.active : ''}`}
+                        >1
+                        </span>
+                            <span className={`${styles.circle} ${state.activeTab === 'step-02' ? styles.active : ''}`}
+                            >2
+                        </span>
+                            <span className={`${styles.circle} ${state.activeTab === 'step-03' ? styles.active : ''}`}
+                            >3
+                        </span>
+
+                            <div className={styles.progressBar}>
+                                <span className={styles.indicator}></span>
+                            </div>
+                        </div>
+
+                    </div>
                     <div className={styles.stepTabs}>
-                        <div className={`${styles.stepTab} ${state.activeTab === 'step-01' ? styles.active : styles.hidden}`}
-                             id="step-01">
-                            <h4 className={styles.formTitleSc}>Personal Info</h4>
-                            <Step1Form {...{ state, dispatch, hasErrors, changeTab: () => changeTab(dispatch, 'step-02') }} />
+                        <div
+                            className={`${styles.stepTab} ${state.activeTab === 'step-01' ? styles.active : styles.hidden}`}
+                            id="step-01">
+                            <h2 className={styles.formTitleSc}>Personal Details</h2>
+                            <Step1Form {...{
+                                state,
+                                dispatch,
+                                hasErrors,
+                                changeTab: () => changeTab(dispatch, 'step-02')
+                            }} />
 
                             <div className={styles.formSubmit}>
                                 <button className={styles.formBtn} type="button"
-                                        onClick={() => handleSubmitStep1(state, dispatch, hasErrors, (tabId) => changeTab(dispatch,tabId))}>Next
+                                        onClick={() => handleSubmitStep1(state, dispatch, hasErrors, (tabId) => changeTab(dispatch, tabId))}>Next
                                 </button>
                             </div>
                         </div>
 
-                            <div className={styles.container}>
-                                <div
-                                    className={`${styles.stepTab} ${state.activeTab === 'step-02' ? styles.active : styles.hidden}`}
-                                    id="step-02">
-                                    <h4 className={styles.formTitleSc}>Company Info</h4>
-                                    <Step2Form
-                                        state={state}
-                                        handleChangeVoen={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeVoen( event,dispatch)
-                                        }
-                                        goToPreviousStep={() => goToPreviousStep(dispatch)}
-                                        handleSubmitStep2={() => handleSubmitStep2(state, dispatch, hasErrorsStep2, () => goToNextStep(dispatch))}
-                                    />
-                                </div>
-                                <div
-                                    className={`${styles.stepTab} ${state.activeTab === 'step-03' ? styles.active : styles.hidden}`}
-                                    id="step-03">
-                                    {!state.isSubmitted && (<div className={styles.inviteContainer}>
-                                        <h4 className={styles.formTitleSc}>Invite new users</h4>
-                                        <Step3Form
-                                            state={state}
-                                            dispatch={dispatch}
-                                            errorsStep3={errorsStep3}
-                                            setErrorsStep3={setErrorsStep3}
-                                            handleInputChange={handleInputChange}
-                                            handleAddClick={handleAddClick}
-                                            handleRemoveClick={handleRemoveClick}
-                                            handleSubmitStep3={handleSubmitStep3}
-                                            goToPreviousStep={goToPreviousStep}
-                                        />
-                                    </div>)}
-                                    {state.isSubmitted && (<Confetti/>)}
-                                </div>
-
+                        <div className={styles.container}>
+                            <div
+                                className={`${styles.stepTab} ${state.activeTab === 'step-02' ? styles.active : styles.hidden}`}
+                                id="step-02">
+                                <h2 className={styles.formTitleSc}>Company Info</h2>
+                                <Step2Form
+                                    state={state}
+                                    dispatch={dispatch}
+                                    handleChangeVoen={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeVoen(event, dispatch)
+                                    }
+                                    goToPreviousStep={() => goToPreviousStep(dispatch)}
+                                    handleSubmitStep2={() => handleSubmitStep2(state, dispatch, hasErrorsStep2, () => goToNextStep(dispatch))}
+                                />
                             </div>
-                        </div>
+                            <div
+                                className={`${styles.stepTab} ${state.activeTab === 'step-03' ? styles.active : styles.hidden}`}
+                                id="step-03">
+                                {!state.isSubmitted && (<div className={styles.inviteContainer}>
+                                    <h2 className={styles.formTitleSc}>Invite new users</h2>
+                                    <Step3Form
+                                        state={state}
+                                        dispatch={dispatch}
+                                        errorsStep3={errorsStep3}
+                                        setErrorsStep3={setErrorsStep3}
+                                        handleInputChange={handleInputChange}
+                                        handleAddClick={handleAddClick}
+                                        handleRemoveClick={handleRemoveClick}
+                                        handleSubmitStep3={handleSubmitStep3}
+                                        goToPreviousStep={goToPreviousStep}
+                                    />
+                                </div>)}
+                            </div>
 
-                </div>
+                        </div>
+                    </div>
+                {state.isSubmitted && (<Confetti/>)}
+
 
             </form>
         </div>

@@ -15,8 +15,30 @@ export const toggleConfirmPasswordVisibility = (dispatch: React.Dispatch<Questio
 
 export const goToNextStep = (dispatch: React.Dispatch<QuestionnaireAction>) => {
     dispatch({ type: 'GO_TO_NEXT_STEP' });
+    dispatch({type:"SET_CURRENT_STEP"})
+
 };
 
 export const goToPreviousStep = (dispatch: React.Dispatch<QuestionnaireAction>) => {
     dispatch({ type: 'GO_TO_PREVIOUS_STEP' });
+    dispatch({type:"SET_CURRENT_STEP"})
+
+};
+export const readURL = (input: HTMLInputElement) => {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+            const imagePreview = document.querySelector('#imagePreview') as HTMLElement;
+            if (imagePreview) {
+                imagePreview.style.backgroundImage = `url(${e.target?.result})`;
+                imagePreview.style.display = "none";
+                imagePreview.style.display = "block";
+                setTimeout(() => {
+                    imagePreview.style.transition = "opacity 0.5s ease-in-out";
+                    imagePreview.style.opacity = "1";
+                }, 650);
+            }
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 };

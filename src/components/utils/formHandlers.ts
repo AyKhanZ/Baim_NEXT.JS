@@ -1,20 +1,22 @@
 import {QuestionnaireAction, QuestionnaireState} from "@/types/questionnaireTypes";
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {FormInputErrorStep3} from "@/types";
 import {
     formatPhoneNumber,
     validateAllFields, validateField,
 } from "@/components/utils/validate";
+import {readURL} from "@/components/utils/formActions";
 export const handleSubmitStep1 = (state: QuestionnaireState, dispatch: React.Dispatch<QuestionnaireAction>, hasErrors: boolean, changeTab: (tab: string) => void) => {
     dispatch({ type: 'SET_CLICKED_COUNT_STEP_1', count: state.clickedCountStep1 + 1 });
     if (!hasErrors) {
         changeTab('step-02');
+        dispatch(({type:'SET_CURRENT_STEP'}))
     }
 };
 
 export const handleSubmitStep2 = (state: QuestionnaireState, dispatch: React.Dispatch<QuestionnaireAction>, hasErrorsStep2: boolean, goToNextStep: () => void) => {
     dispatch({ type: 'SET_CLICKED_COUNT_STEP_2', count: state.clickedCountStep2 + 1 });
-    if (!hasErrorsStep2) {
+    if (hasErrorsStep2) {
         goToNextStep();
     }
 };
@@ -25,7 +27,6 @@ export const handleSubmitStep3 = async (state: QuestionnaireState, dispatch: Rea
     if (!validateAllFields(state, setErrorsStep3)) {
         dispatch({ type: 'SET_IS_SUBMITTED', isSubmitted: true });
         try {
-            // Send a fetch request to update data
             const response = await fetch('/UpdateData', {
                 method: 'PUT',
                 headers: {
@@ -87,6 +88,9 @@ export const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>, d
 export const handleAddClick = (dispatch: React.Dispatch<QuestionnaireAction>) => {
     dispatch({ type: 'ADD_INPUT' });
 };
+export const handleAddClick2 = (dispatch: React.Dispatch<QuestionnaireAction>) => {
+    dispatch({ type: 'ADD_INPUT2' });
+};
 
 export const handleRemoveClick = (index: number,dispatch: React.Dispatch<QuestionnaireAction>) => {
     dispatch({ type: 'REMOVE_INPUT', index });
@@ -112,6 +116,9 @@ export const handleChangePassword = (dispatch: React.Dispatch<QuestionnaireActio
 
 export const handleChangePatronymic = (dispatch: React.Dispatch<QuestionnaireAction>, e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'SET_PATRONYMIC', patronymic: e.target.value });
+};
+export const handleChangePosition = (dispatch: React.Dispatch<QuestionnaireAction>, e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: 'SET_POSITION', position: e.target.value });
 };
 
 export const handleChangePersonalEmail = (dispatch: React.Dispatch<QuestionnaireAction>, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -168,3 +175,6 @@ export const handleChangeInPhoneNum = (
         }
     }
 };
+export const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    readURL(event.target);
+}

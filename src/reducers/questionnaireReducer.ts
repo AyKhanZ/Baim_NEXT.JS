@@ -1,4 +1,5 @@
-import { QuestionnaireState, QuestionnaireAction } from '@/types/questionnaireTypes';
+import {QuestionnaireAction, QuestionnaireState} from "@/types/questionnaireTypes";
+
 export const initialState: QuestionnaireState = {
     birthDate: "",
     patronymic: "",
@@ -21,8 +22,14 @@ export const initialState: QuestionnaireState = {
     voen: "",
     voenIsValid: true,
     inputs: [{ id: Date.now(), name: '', lastName: '', email: '' }],
-    stepOrder:['step-01', 'step-02', 'step-03']
-
+    stepOrder:['step-01', 'step-02', 'step-03'],
+    currentStep:1,
+    checkedMale: false,
+    checkedFemale: false,
+    position:"",
+    companyForms: [
+        { voen: '', companyName: '', legalAddress: '', legalForm: '', legalRepresentative: '', selectedActivities: [] }
+    ]
 };
 
 export function questionnaireReducer(state: QuestionnaireState, action: QuestionnaireAction): QuestionnaireState {
@@ -30,6 +37,12 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
         case 'SET_FIELD':
             return { ...state, [action.field]: action.value };
         case 'ADD_INPUT':
+            return {
+                ...state,
+                inputs: [...state.inputs, { id: Date.now(), name: '', lastName: '', email: '' }],
+                errorsStep3: [...state.errorsStep3, {}]
+            };
+        case 'ADD_INPUT2':
             return {
                 ...state,
                 inputs: [...state.inputs, { id: Date.now(), name: '', lastName: '', email: '' }],
@@ -59,7 +72,10 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
         case 'GO_TO_PREVIOUS_STEP':
         {
             const currentIndex = state.stepOrder.indexOf(state.activeTab);
+
             if (currentIndex > 0) {
+                state.currentStep = currentIndex - 1;
+
                 return { ...state, activeTab: state.stepOrder[currentIndex - 1] };
             }
             return state;
@@ -68,10 +84,15 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
         {
             const currentIndex = state.stepOrder.indexOf(state.activeTab);
             if (currentIndex > 0) {
+                state.currentStep = currentIndex +1;
                 return { ...state, activeTab: state.stepOrder[currentIndex + 1] };
             }
             return state;
         }
+        case 'SET_CURRENT_STEP':
+            const currentIndex = state.stepOrder.indexOf(state.activeTab);
+
+            return {...state,currentStep:currentIndex + 1};
         case 'SET_ERRORS':
             return { ...state, errors: action.errors };
         case 'SET_ERRORS_STEP_2':
@@ -84,6 +105,14 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
                 )
             };
         case 'SET_SELECTED_OPTION':
+            if(action.option === 'female'){
+                state.checkedFemale = true;
+                state.checkedMale = false;
+            }
+            else if(action.option === 'male'){
+                state.checkedFemale = false;
+                state.checkedMale = true;
+            }
             return { ...state, selectedOption: action.option };
         case 'SET_PHONE_NUMBER':
             return { ...state, phoneNumber: action.phoneNumber };
@@ -110,13 +139,20 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
         case 'SET_CONFIRM_PASSWORD':
             return { ...state, confirmPassword: action.confirmPassword };
         case 'SET_PATRONYMIC':
-            return { ...state, patronymic: action.patronymic }; // Set patronymic
+            return { ...state, patronymic: action.patronymic };
+        case 'SET_POSITION':
+            return { ...state, position: action.position };
         case 'SET_PERSONAL_EMAIL':
             return { ...state, personalEmail: action.personalEmail };
         case 'SET_PASSWORD':
             return { ...state, password: action.password };
+
+        case 'SET_COMPANY_FORM_DATA':
+            return {
+                ...state,
+                companyForms: action.formData
+            };
         default:
             return state;
     }
-
 }

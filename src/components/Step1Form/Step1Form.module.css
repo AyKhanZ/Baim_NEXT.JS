@@ -1,3 +1,25 @@
+.containerStep1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.firstSection{
+    width: 100%;
+   display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+.personalInfoDiv{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    column-gap: 5em;
+    row-gap: 2em;
+    width: 100%;
+}
 .mainContainer{
     display: flex;
     width:50vw;
@@ -5,10 +27,14 @@
     align-items: center;
 }
 .containerr{
+    height: 100vh;
+    max-height: 100vh;
     display: flex;
-    min-height: 100vh;
+    width: 100vw;
+    max-width:100vw;
     justify-content: center;
     background-color: #eaebef;
+    padding: 5em;
     box-sizing: border-box;
 }
 .formTitle {
@@ -22,15 +48,11 @@
 
 .formTitleSc {
     color: #2c3638;
+    font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;
     text-align: center;
     margin: 15px 0px 20px 0px;
-}
-.containerStep1 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4em;
 }
 
 .column {
@@ -74,27 +96,31 @@
 }
 
 
-.gender{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-}
+/*.gender{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    gap: 0.5em;*/
+/*}*/
 .genderInput{
 
-accent-color: cadetblue;
+    accent-color: cadetblue;
+}
+.containerStep1 input{
+    font-size: 14px !important;
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    max-height: 100vh;
     border-radius: 30px;
     position: relative;
-    width: 1300px;
-    padding: 30px 50px;
+    width: 100%;
+    padding: 15px 30px;
     background: white;
-    margin: 40px 80px 40px;
+    margin: 30px 50px 30px;
     box-sizing: border-box;
 }
 
@@ -103,7 +129,8 @@ accent-color: cadetblue;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-   height: 53px;
+    height: 55px;
+    resize:none;
 }
 .formControll1 {
     position: relative;
@@ -113,14 +140,26 @@ accent-color: cadetblue;
     margin-bottom: 20px;
 }
 
+
 .formInput {
     position: relative;
     width: 100%;
 }
+.formInputPhoto{
+    position: relative;
+    width: 100%;
+}
+.formInputPhoto .input{
+    position: relative;
+    width: 100%;
+}
+.formInputPhoto input{
+    font-size: 16px;
 
+}
 .formInput input,
 .formInput textarea {
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
     width: 100%;
     padding: 8px 0px;
@@ -142,6 +181,15 @@ accent-color: cadetblue;
     z-index: 1;
     transition: all 0.1s ease-in;
 }
+
+.formControll .labelGender{
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+}
+.formControll .mainGenderLabel{
+     bottom: 100%;
+ }
 .formControll .phoneLabel {
     position: absolute;
     left: 46px;
@@ -151,23 +199,18 @@ accent-color: cadetblue;
     z-index: 1;
     transition: all 0.1s ease-in;
 }
+.formInputGender{
+    margin-top: 10px;
+    margin-bottom: 1px;
+}
 .code {
-    font-size: 18px;
+    font-size: 17px;
 }
-.formControll .voenLabel{
-    bottom:25px ;
-}
+
 .formControll .required:after {
-   content:" *";
-
-}
-.activityLabel{
-    bottom: 5px;
-}
-.activityLabel:after {
     content:" *";
-}
 
+}
 .formInput input:focus + .phoneLabel,
 .formInput input:valid + .phoneLabel{
     bottom: 100%;
@@ -178,7 +221,13 @@ accent-color: cadetblue;
 .formInput input:focus + label,
 .formInput input:valid + label,
 .formInput textarea:focus + label,
-.formInput textarea:valid + label ,.formInput input:valid + .voenLabel{
+.formInput textarea:valid + label {
+    bottom: 100%;
+    z-index: 9;
+    transition: all 0.1s ease-in-out;
+}
+.formInputPhoto .photoLabel{
+    position: absolute;
     bottom: 100%;
     z-index: 9;
     transition: all 0.1s ease-in-out;
@@ -209,11 +258,6 @@ accent-color: cadetblue;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.formsubmitmini{
-    width: 50%;
-    padding: 30px;
-
 }
 .formSubmit .formBtn:disabled{
     opacity: 0.8;
@@ -277,7 +321,7 @@ accent-color: cadetblue;
     max-width: 300px;
 }
 .grid2 {
-  display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -418,15 +462,10 @@ accent-color: cadetblue;
     gap : 10px
 }
 .step2Container{
-
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 0 100px;
-}
-.step2Container input{
-    font-size: 14px !important;
-
+    margin: 0 300px;
 }
 .rowContainer{
     width: 100%;
@@ -437,7 +476,7 @@ accent-color: cadetblue;
     gap:2em;
 }
 .tableHeader tr:first-child{
- margin-top: 100px;
+    margin-top: 100px;
 }
 .table {
     width:100%;
@@ -489,14 +528,13 @@ accent-color: cadetblue;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap:5em;
+    border: 1px solid black;
+    padding: 1.5em;
+    padding-bottom: 0.7em;
+    border-radius: 20px;
     box-sizing: border-box;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: 0px;
-
-
 }
 .inputsStep3{
     width: 100%;
@@ -509,7 +547,7 @@ accent-color: cadetblue;
     display: flex;
     flex-direction: column;
     gap:20px;
-    width: 80%;
+    width: 70%;
     justify-content: center;
 }
 .inviteContainer{
@@ -523,16 +561,9 @@ accent-color: cadetblue;
     background-color: transparent;
     position: relative;
     border: none;
-    margin-right:2.5em;
+    margin-right:1.5em;
 }
-.btnDelete2 {
-    background-color: transparent;
-    position: relative;
-    border: none;
-    margin-left:2.5em;
-    margin-right:2em;
-    height: 30px;
-}
+
 .btnDelete::after {
     content: 'delete';
     position: absolute;
@@ -678,7 +709,7 @@ accent-color: cadetblue;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 999999 }
+    zIndex: 9999 }
 
 @keyframes confettiRain {
     0% {
@@ -789,84 +820,21 @@ accent-color: cadetblue;
 
 
 
-.avatarUpload {
-    position: relative;
-    max-width: 205px;
-    /*margin: 50px auto;*/
-}
-
-.avatarUpload .avatarEdit {
-    position: absolute;
-    right: -30px;
-    z-index: 1;
-    top: 10px;
-}
-
-.avatarUpload .avatarEdit input {
-    display: none;
-}
-
-.avatarUpload .avatarEdit input + label {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    margin-bottom: 0;
-    border-radius: 100%;
-    background: #ffffff;
-    border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    font-weight: normal;
-    transition: all 0.2s ease-in-out;
-}
-
-.avatarUpload .avatarEdit input + label:hover {
-    background: #f1f1f1;
-    border-color: #d6d6d6;
-}
-
-.avatarUpload .avatarEdit input + label:after {
-    content: "\f040";
-    font-family: 'FontAwesome';
-    color: #00c5b2;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: auto;
-}
-
-.avatarUpload .avatarPreview {
-    width: 263px;
-    height: 263px;
-    position: relative;
-    border-radius: 100%;
-    border: 6px solid #00c5b2;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
-.avatarUpload .avatarPreview > div {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 .uploadFileWrapper {
     position: relative;
+    width: 100%;
     max-width: 240px;
-    margin: 50px auto;
+    margin-top: 10px;
 }
 
 .uploadFileInput {
     opacity: 0;
     position: absolute;
-    z-index: -1;
+    z-index: 9;
     overflow: hidden;
-    width: 0.4px;
-    height: 0.4px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .uploadFileLabel {
@@ -885,83 +853,38 @@ accent-color: cadetblue;
     margin-right: 11px;
 }
 
-.uploadFileText,
-.uploadFileIcon path {
+.uploadFileInput:hover  + .uploadFileText,
+.uploadFileInput:hover  +.uploadFileIcon path {
     transition: .25s ease;
 }
 
-.uploadFileLabel:hover .uploadFileText {
+.uploadFileInput:hover + .uploadFileText {
     color: #00c5b2;
 }
 
-.uploadFileLabel:hover .uploadFileIcon path {
+.uploadFileInput:hover +  .uploadFileIcon path {
     fill: #00c5b2;
 }
 
-.uploadFileLabel:hover {
+.uploadFileInput:hover  + .uploadFileLabel{
     border: 2px dashed #00c5b2;
 }
-.scrollable{
-    overflow-y: auto;
-    height: 120px;
-    overflow-x: hidden;
-    border: 1px solid black;
-    border-radius: 30px;
 
-}
-.inputCol{
-    display: flex;
-    flex-direction: column;
-    gap:1em;
-    width: 300px;
-}
-.inputRow{
-    display: flex;
-    flex-direction: row;
-    gap:2em;
-    align-items: center;
-    justify-content: center;
-}
-.inputs2{
-    border: 1px solid black;
-    padding: 30px;
-    border-radius: 30px;
-    overflow-y: auto;
-    max-height: 262px;
-    display: flex;
-    gap:30px;
-    flex-direction: column;
-
-}
-.select{
-    outline: none;
+.contactInfo{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5em;
     width: 100%;
-    height: 30px;
-    border-radius: 10px;
-    margin-top: 5px;
 }
-.ulStyled{
-    margin-top: 10px;
+.accountSettings{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5em;
+    width: 100%;
+}
+.gender{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-}
-.liStyled{
-    position: relative;
-    list-style: none;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 10px;
-    background:#eaebef ;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    text-align: center;
-}
-.removeIcon{
-    margin-left: 5px;
-    display:flex;
-    justify-content: center;
+    gap: 1em;
     align-items: center;
-    cursor: pointer;
 }

@@ -5,7 +5,7 @@ import {SvgComponentProps} from "@/types";
 
 
 const SvgComponent = (props: SvgComponentProps & SVGProps<SVGSVGElement>) => (
-    <svg className={`${props.iconStyle} ${props.stylePassword}`}
+    <svg className={`${props.iconStyle} ${props.passwordStyle}`}
          width="18"
          height="18" fill="none"
          xmlns="http://www.w3.org/2000/svg">

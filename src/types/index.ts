@@ -20,12 +20,13 @@ export interface FormErrorsStep1 {
     phoneNumber?: string;
     businessPhoneNumber?: string;
     gender?: string;
+    position?:string;
 
 }
 
 export interface FormErrorsStep2 {
     voen?: string;
-
+    activity?:string;
 }
 
 export interface FormInputStep3 {
@@ -44,12 +45,8 @@ export interface FormInputErrorStep3 {
 }
 
 export interface Step2FormProps {
-    state: {
-        voen: string;
-        errorsStep2: {
-            voen: string;
-        };
-    };
+    state: QuestionnaireState;
+    dispatch: React.Dispatch<QuestionnaireAction>;
     handleChangeVoen: (event: React.ChangeEvent<HTMLInputElement>) => void;
     goToPreviousStep: () => void;
     handleSubmitStep2: () => void;
@@ -61,19 +58,20 @@ export interface Step1FormProps {
     dispatch: Dispatch<QuestionnaireAction>;
     hasErrors: boolean;
     changeTab: (tabId: string) => void;
+
 }
 
 export interface Step3FormProps {
     state: QuestionnaireState;
     dispatch: Dispatch<QuestionnaireAction>;
     errorsStep3: FormInputErrorStep3[];
-    setErrorsStep3: Dispatch<SetStateAction<FormInputErrorStep3[]>>; // Ensure correct type here
+    setErrorsStep3: Dispatch<SetStateAction<FormInputErrorStep3[]>>;
     handleInputChange: (
         index: number,
         event: React.ChangeEvent<HTMLInputElement>,
         dispatch: Dispatch<QuestionnaireAction>,
         state: QuestionnaireState,
-        setErrorsStep3: Dispatch<SetStateAction<FormInputErrorStep3[]>>, // Correct type here
+        setErrorsStep3: Dispatch<SetStateAction<FormInputErrorStep3[]>>,
         errorsStep3: FormInputErrorStep3[]
     ) => void;
     handleAddClick: (dispatch: Dispatch<QuestionnaireAction>) => void;
@@ -87,8 +85,40 @@ export interface Step3FormProps {
 }
 
 
-
 export interface SvgComponentProps {
     iconStyle: string,
     passwordStyle: string
 }
+
+export interface MyDatePickerProps {
+    className?: string,
+    onChange?: (timestamp: number) => void,
+    state?: QuestionnaireState,
+    dispatch?: React.Dispatch<QuestionnaireAction>
+}
+
+export interface DayDetails {
+    date: number;
+    day: number;
+    month: number;
+    timestamp: number;
+    dayString: string;
+}
+
+export interface MyDatePickerState {
+    year: number;
+    month: number;
+    selectedDay: number;
+    monthDetails: DayDetails[];
+    showDatePicker: boolean;
+}
+
+export interface CompanyForm {
+    voen: string;
+    companyName: string;
+    legalAddress: string;
+    legalForm: string;
+    legalRepresentative: string;
+    selectedActivities: string[];
+}
+
