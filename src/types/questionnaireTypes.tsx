@@ -32,6 +32,7 @@ export interface QuestionnaireState {
 export type QuestionnaireAction =
     | { type: 'SET_FIELD'; field: string; value: any }
     | { type: 'ADD_INPUT' }
+    | { type: 'REMOVE_EMPTY_INPUT' }
     | { type: 'ADD_INPUT2' }
     | { type: 'REMOVE_INPUT'; index: number }
     | { type: 'SET_ACTIVE_TAB'; tabId: string }

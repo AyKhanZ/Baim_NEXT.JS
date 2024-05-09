@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../MultiStepForm/MultiStepForm.module.css'
 const Confetti: React.FC = () => {
+    const [wrapperStyle, setWrapperStyle] = useState(styles.confettiWrapper);
+
     useEffect(() => {
         const generateConfetti = () => {
             for (let i = 0; i < 200; i++) {
@@ -23,7 +25,12 @@ const Confetti: React.FC = () => {
 
         generateConfetti();
 
+        const timer = setTimeout(() => {
+            setWrapperStyle(styles.confettiWrapperChanged);
+        }, 4);
+
         return () => {
+            clearTimeout(timer);
             const confettiElements = document.querySelectorAll('.confetti');
             confettiElements.forEach((element) => element.remove());
         };
@@ -37,7 +44,7 @@ const Confetti: React.FC = () => {
                 <h3>Thanks for taking the time!</h3>
                 <button className={styles.modalBtn}>Great, now take me to my profile</button>
             </div>
-            <div id="confetti-wrapper" className={styles.confettiWrapper} >
+            <div id="confetti-wrapper" className={wrapperStyle}>
             </div>
         </div>
     );

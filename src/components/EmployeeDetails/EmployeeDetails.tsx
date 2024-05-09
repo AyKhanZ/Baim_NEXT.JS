@@ -1,120 +1,226 @@
 import React, {useEffect, useReducer, useRef, useState} from 'react';
 import styles from './EmployeeDetails.module.css';
-import Image from 'next/image';
-import Swiper from "swiper";
+import ExperienceIcon from "@/icons/ExperienceIcon";
+import ProjectIcon from "@/icons/ProjectIcon";
+import CustomerSatisfaction from "@/icons/CustomerSatisfaction";
 
 const EmployeeDetails: React.FC = () => {
-
-    useEffect(() => {
-        const swiper = new Swiper(".blogSlider", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 3,
-                slideShadows: true
-            },
-            keyboard: {
-                enabled: true
-            },
-            mousewheel: {
-                thresholdDelta: 70
-            },
-            loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2
-                },
-                768: {
-                    slidesPerView: 1
-                },
-                1024: {
-                    slidesPerView: 2
-                },
-                1560: {
-                    slidesPerView: 3
-                }
-            }
-        });
-
-        // // Clean up the Swiper instance
-        // return () => {
-        //     swiper.destroy(true, true);
-        // };
-    }, []);
-
-
 
     return (
         <div className={styles.container}>
             <div className={styles.firstSection}>
                 <div className={styles.mainInfo}>
-                    <h1>Name Surname</h1>
-                    <h3>Position</h3>
-                </div>
-                <div className={styles.firstImage}>
-                    <Image src="" alt="Your Image" width={400} height={300}/>
-                </div>
-            </div>
-            <div className={styles.secondSection}>
-                <div className={styles.blogSlider}>
-                    <div className={`${styles.blogSlider__wrp} ${styles.swiperWrapper}`}>
-                        <div className={`${styles.blogSlider__item} ${styles.swiperSlide}`}>
-                            <div className={styles.blogSlider__img}>
-                            <img
-                                    src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
-                                    alt=""/>
+                    <div className={styles.description}>
+                        <span className={styles.name}>Джон Доу</span>
+                        <span className={styles.position}>Директор</span>
+                    </div>
+                    <div className={styles.infoInNumbers}>
+                        <div className={styles.dataInNumbers}>
+                            <div className={styles.iconContainer1}>
+                                <ExperienceIcon/>
                             </div>
-                            <div className={styles.blogSlider__content}>
-                                <span className={styles.blogSlider__code}>26 December 2019</span>
-                                <div className={styles.blogSlider__title}>Lorem Ipsum Dolor</div>
-                                <div className={styles.blogSlider__text}>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?
-                                </div>
-                                <a href="#" className={styles.blogSlider__button}>READ MORE</a>
+                            <div className={styles.texts}>
+                                <span className={styles.number}>7+ </span>
+                                <span className={styles.text}>лет опыта</span>
                             </div>
                         </div>
-                        <div className={`${styles.blogSlider__item} swiper-slide`}>
-                            <div className={styles.blogSlider__img}>
-                                <img
-                                    src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/jason-leung-798979-unsplash.webp"
-                                    alt=""/>
+                        <div className={styles.dataInNumbers}>
+                            <div className={styles.iconContainer2}>
+                                <ProjectIcon/>
                             </div>
-                            <div className={styles.blogSlider__content}>
-                                <span className={styles.blogSlider__code}>26 December 2019</span>
-                                <div className={styles.blogSlider__title}>Lorem Ipsum Dolor2</div>
-                                <div className={styles.blogSlider__text}>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?
-                                </div>
-                                <a href="#" className={styles.blogSlider__button}>READ MORE</a>
+                            <div className={styles.texts}>
+                                <span className={styles.number}>70+ </span>
+                                <span className={styles.text}>проектов</span>
                             </div>
                         </div>
-                        <div className={`${styles.blogSlider__item} swiper-slide`}>
-                            <div className={styles.blogSlider__img}>
-                                <img
-                                    src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759871/alessandro-capuzzi-799180-unsplash.webp"
-                                    alt=""/>
+                        <div className={styles.dataInNumbers}>
+                            <div className={styles.iconContainer3}>
+                                <CustomerSatisfaction/>
                             </div>
-                            <div className={styles.blogSlider__content}>
-                                <span className={styles.blogSlider__code}>26 December 2019</span>
-                                <div className={styles.blogSlider__title}>Lorem Ipsum Dolor</div>
-                                <div className={styles.blogSlider__text}>Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?
-                                </div>
-                                <a href="#" className={styles.blogSlider__button}>READ MORE</a>
+                            <div className={styles.texts}>
+                                <span className={styles.number}>50+ </span>
+                                <span className={styles.text}>клиентов</span>
                             </div>
                         </div>
                     </div>
-                    <div className={styles.blogSlider__pagination}></div>
+                </div>
+                <div className={styles.firstImageContainer}>
+                    <img className={styles.firstImage} src="/employee1.jpg" alt=""/>
                 </div>
             </div>
+            <div className={styles.thirdSection}>
+                <div className={styles.sectionName}>
+                    <span className={styles.name}>Курсы</span>
+                </div>
+                <div className={styles.containerCards}>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Курс 1</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Курс 2</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Курс 3</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Курс 4</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div className={styles.thirdSection}>
+                <div className={styles.sectionName}>
+                    <span className={styles.name}>Сертификаты</span>
+                </div>
+                <div className={styles.containerCards}>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Сертификат 1</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Сертификат 2</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Сертификат 3</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.card}>
+                        <h3 className={styles.title}>Сертификат 4</h3>
+                        <div className={styles.bar}>
+                            <div className={styles.emptybar}></div>
+                            <div className={styles.filledbar}></div>
+                            <div className={styles.courseDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.secondSection}>
+                <div className={styles.sectionName}>
+                    <span className={styles.name}>Клиенты</span>
+                </div>
+                <div className={styles.slider}>
+                    <div className={styles['slide-track']}>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                        <div className={styles.slide}>
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100"
+                                 width="250" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }

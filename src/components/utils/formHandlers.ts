@@ -21,49 +21,21 @@ export const handleSubmitStep2 = (state: QuestionnaireState, dispatch: React.Dis
     }
 };
 
-export const handleSubmitStep3 = async (state: QuestionnaireState, dispatch: React.Dispatch<QuestionnaireAction>,setErrorsStep3: React.Dispatch<React.SetStateAction<FormInputErrorStep3[]>>) => {
-      validateAllFields(state, setErrorsStep3);
+export const handleSubmitStep3 = async (state: QuestionnaireState, dispatch: React.Dispatch<QuestionnaireAction>, setErrorsStep3: React.Dispatch<React.SetStateAction<FormInputErrorStep3[]>>) => {
+    validateAllFields(state, setErrorsStep3);
     dispatch({ type: 'SET_CLICKED_COUNT_STEP_3', count: state.clickedCountStep3 + 1 });
+    dispatch({ type: 'REMOVE_EMPTY_INPUT' });
+
     if (!validateAllFields(state, setErrorsStep3)) {
-        dispatch({ type: 'SET_IS_SUBMITTED', isSubmitted: true });
         try {
-            const response = await fetch('/UpdateData', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    birthDate: state.birthDate,
-                    password: state.password,
-                    confirmPassword: state.confirmPassword,
-                    personalEmail: state.personalEmail,
-                    patronymic: state.patronymic,
-                    phoneNumber: state.phoneNumber,
-                    businessPhoneNumber: state.businessPhoneNumber,
-                    voen: state.voen,
-                    gender:state.selectedOption,
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to update data');
-            }
-
-            // Data updated successfully
-            dispatch({ type: 'SET_IS_SUBMITTED', isSubmitted: true });
-
-            // Optionally, you can handle the response data here
-            const responseData = await response.json();
-            console.log('Data updated successfully:', responseData);
-        } catch (error:any) {
+            setTimeout(async () => {
+                console.log(state.inputs)
+            }, 4000);
+        } catch (error: any) {
             console.error('Error updating data:', error.message);
-            // Handle error (e.g., show error message to the user)
         }
     }
-
-
 };
-
 
 export const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>, dispatch: React.Dispatch<QuestionnaireAction>, state: QuestionnaireState, setErrorsStep3: React.Dispatch<React.SetStateAction<FormInputErrorStep3[]>>, errorsStep3: FormInputErrorStep3[]) => {
     const { name, value } = event.target;

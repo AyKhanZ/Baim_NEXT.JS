@@ -71,6 +71,7 @@
 }
 .formInputinput[type=date]::-webkit-calendar-picker-indicator {
     visibility: hidden;
+    cursor: pointer;
 }
 .formControll label,.formControll1 label {
     position: absolute;

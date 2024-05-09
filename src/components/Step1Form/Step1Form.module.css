@@ -226,6 +226,14 @@
     z-index: 9;
     transition: all 0.1s ease-in-out;
 }
+.formInput::placeholder{
+    opacity: 0;
+}
+.formInput:not(:placeholder-shown) + .upLabel{
+    bottom: 100% !important;
+    z-index: 9;
+    transition: all 0.1s ease-in-out;
+}
 .formInputPhoto .photoLabel{
     position: absolute;
     bottom: 100%;

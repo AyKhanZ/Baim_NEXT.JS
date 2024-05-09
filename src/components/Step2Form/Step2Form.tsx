@@ -4,7 +4,9 @@ import AddIcon from '@/icons/AddIcon';
 import DeleteIcon from "@/icons/DeleteIcon";
 import RemoveIcon from "@/icons/RemoveIcon";
 import {CompanyForm, Step2FormProps} from "@/types";
-
+import Loading from "@/components/Loading/Loading";
+import LoadIcon from "@/icons/LoadIcon";
+import Image from 'next/image'
 const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep, handleSubmitStep2 }) => {
     const [companyForms, setCompanyForms] = useState<CompanyForm[]>([
         { voen: '', companyName: '', legalAddress: '', legalForm: '', legalRepresentative: '', selectedActivities: [] }
@@ -161,20 +163,22 @@ const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep,
                                 </div>
                             </div>
                         </div>
-                        <div className={`${styles.formSubmit} ${styles.formsubmitmini}`}>
-                            <button className={styles.findBtn} type="button">Find Details</button>
+                        <div className={`${styles.formSubmit} ${styles.formsubmitmini} `}>
+                            <button className={`${styles.formSubmit} ${styles.hiddenButton} `} type="button">Find Details</button>
+                            <div className={styles.hiddenLoading}><Loading/></div>
+
                         </div>
                         <div className={styles.inputCol}>
                             <div className={styles.formControll}>
                                 <div className={styles.formInput}>
                                     <input
-                                        value={form.companyName}
                                         type="text"
                                         name={`companyName${formIndex}`}
                                         id={`companyName${formIndex}`}
                                         readOnly
                                         tabIndex={-1}
                                         className={styles.formInputField}
+                                        placeholder={"Company Name"}
                                     />
                                     <label htmlFor={`companyName${formIndex}`}>Name of company</label>
                                 </div>
@@ -187,6 +191,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep,
                                         name={`legalAddress${formIndex}`}
                                         id={`legalAddress${formIndex}`}
                                         readOnly
+                                        placeholder={"Legal Address"}
                                         tabIndex={-1}
                                         className={styles.formInputField}
                                     />
@@ -198,6 +203,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep,
                                     <input
                                         value={form.legalForm}
                                         type="text"
+                                        placeholder={"Legal Form"}
                                         name={`legalForm${formIndex}`}
                                         id={`legalForm${formIndex}`}
                                         readOnly
@@ -212,6 +218,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep,
                                     <input
                                         value={form.legalRepresentative}
                                         type="tel"
+                                        placeholder={"Legal Representative"}
                                         name={`legalRepresentative${formIndex}`}
                                         id={`legalRepresentative${formIndex}`}
                                         readOnly
@@ -246,7 +253,17 @@ const Step2Form: React.FC<Step2FormProps> = ({ state,dispatch, goToPreviousStep,
                 <button type="button" className={styles.formBtn} onClick={handleSubmit}>
                     Next
                 </button>
+                <div className={styles.logoDiv} >
+                    <Image
+                        src="logoIcon.svg"
+                        width={100}
+                        height={100}
+                        alt="logo"
+                    />
+                </div>
             </div>
+
+
         </div>
     );
 };

@@ -152,6 +152,18 @@ export function questionnaireReducer(state: QuestionnaireState, action: Question
                 ...state,
                 companyForms: action.formData
             };
+
+        case 'REMOVE_EMPTY_INPUT': {
+                const updatedInputs = state.inputs.filter(input => {
+                    return Object.entries(input).some(([key, value]) => key !== 'id' && value !== '');
+                });
+
+                return {
+                    ...state,
+                    inputs: updatedInputs,
+                };
+            }
+
         default:
             return state;
     }

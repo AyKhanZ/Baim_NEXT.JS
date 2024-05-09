@@ -1,49 +1,37 @@
 [
   {
-    "name": "Shamsaddin Vahabli",
-    "position": "CEO",
+    "name": "Шамсаддин Вахабли",
+    "position": "Генеральный директор",
     "isOpen": true,
     "children": [
       {
-        "name": "Alice Smith",
-        "position": "Director",
+        "name": "Алиса Смит",
+        "position": "Директор",
         "isOpen": true,
         "workers": [
-          { "name": "John Doe", "position": "Manager", "isOpen": false },
-          { "name": "Alice Smith", "position": "Coordinator", "isOpen": false },
-          { "name": "Bob Johnson", "position": "Analyst", "isOpen": false }
+          { "name": "Джон Доу", "position": "Менеджер", "isOpen": false },
+          { "name": "Алиса Смит", "position": "Координатор", "isOpen": false },
+          { "name": "Боб Джонсон", "position": "Аналитик", "isOpen": false }
         ]
       },
       {
-        "name": "Emily Brown",
-        "position": "Director",
+        "name": "Эмили Браун",
+        "position": "Директор",
         "isOpen": true,
         "workers": [
-          { "name": "Emily Brown", "position": "Supervisor", "isOpen": false },
-          {
-            "name": "Michael Davis",
-            "position": "Consultant",
-            "isOpen": false
-          },
-          { "name": "Emma Wilson", "position": "Assistant", "isOpen": false }
+          { "name": "Эмили Браун", "position": "Супервайзер", "isOpen": false },
+          { "name": "Майкл Дэвис", "position": "Консультант", "isOpen": false },
+          { "name": "Эмма Уилсон", "position": "Ассистент", "isOpen": false }
         ]
       },
       {
-        "name": "Oliver Taylor",
-        "position": "Director",
+        "name": "Оливер Тейлор",
+        "position": "Директор",
         "isOpen": true,
         "workers": [
-          {
-            "name": "Oliver Taylor",
-            "position": "Specialist",
-            "isOpen": false
-          },
-          {
-            "name": "Sophia Martinez",
-            "position": "Coordinator",
-            "isOpen": false
-          },
-          { "name": "William Garcia", "position": "Analyst", "isOpen": false }
+          { "name": "Оливер Тейлор", "position": "Специалист", "isOpen": false },
+          { "name": "София Мартинес", "position": "Координатор", "isOpen": false },
+          { "name": "Уильям Гарсия", "position": "Аналитик", "isOpen": false }
         ]
       }
     ]

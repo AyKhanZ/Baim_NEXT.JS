@@ -14,6 +14,9 @@ const Step3Form: React.FC<Step3FormProps> = ({
                                                  handleSubmitStep3,
                                                  goToPreviousStep
                                              }) => {
+    const handleSubmit = () => {
+        dispatch({ type: 'REMOVE_EMPTY_INPUT' });
+        handleSubmitStep3(state, dispatch, setErrorsStep3)}
     return (
         <div className={styles.inputsContainer}>
             <div className={styles.scrollable}>
@@ -104,7 +107,7 @@ const Step3Form: React.FC<Step3FormProps> = ({
                         onClick={() => goToPreviousStep(dispatch)}>Previous
                 </button>
                 <button type="button" className={styles.formBtn}
-                        onClick={() => handleSubmitStep3(state, dispatch, setErrorsStep3)}
+                        onClick={handleSubmit}
                 >Submit
                 </button>
             </div>
